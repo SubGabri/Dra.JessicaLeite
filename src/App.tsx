@@ -105,7 +105,7 @@ export default function App() {
                   <Star className="w-5 h-5 fill-current" />
                   <Star className="w-5 h-5 fill-current" />
                 </div>
-                <span className="text-lg font-display font-medium text-navy">5.015 Avaliações no Google</span>
+                <span className="text-lg font-display font-medium text-navy">Referência em Saúde & Bem-estar Oral</span>
               </div>
               <span className="text-navy/20 text-2xl">•</span>
               <span className="text-lg font-display font-medium text-navy/70">Atendimento Humanizado</span>
@@ -260,8 +260,8 @@ export default function App() {
               <img src="/user_uploads/8.jpeg" alt="Dra. Jéssica Leite" loading="lazy" className="w-full h-full object-cover opacity-80 object-top" title="Dra. Jéssica Leite" />
             </div>
             <div className="absolute -bottom-8 -right-8 glass p-6 rounded-2xl hidden md:block">
-              <div className="text-4xl font-display font-medium text-gold mb-1">5k+</div>
-              <div className="text-sm text-navy/70 font-medium">Pacientes Satisfeitos</div>
+              <div className="text-4xl font-display font-medium text-gold mb-1">Saúde</div>
+              <div className="text-sm text-navy/70 font-medium">Integral & Bem-estar</div>
             </div>
           </motion.div>
 
@@ -321,9 +321,9 @@ export default function App() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { name: "Bruno Sousa", text: "Resina no dente do meu filho ficou top, obrigado restaurou o sorriso dele." },
-            { name: "Felipe Luis", text: "Parabéns pelo trabalho e pelo ótimo atendimento!" },
-            { name: "Thiago Bruno", text: "Excelente profissional! Recomendo de olhos fechados." }
+            { name: "Alexandre Sousa", text: "Profissional excelente, extremamente atenciosa e cuidadosa aos detalhes, referência absoluta no que faz, além de estar super bem alocada em uma das melhores regiões do ABC." },
+            { name: "Antonio Felipe", text: "Excelente profissional! A Dra. Jéssica é muito atenciosa, cuidadosa e passa muita confiança. Recomendo! 🦷✨" },
+            { name: "Gabriel Messias", text: "Um Ambiente muito agradável e aconchegante, atendimento excelente da Dra. e uma recepção Incrível, Super Recomendo!" }
           ].map((testimonial, i) => (
             <motion.div
               key={i}
