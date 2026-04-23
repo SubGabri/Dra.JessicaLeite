@@ -388,7 +388,7 @@ export default function App() {
               <div className="lg:col-span-5">
                 <div className="flex items-center gap-4 mb-8">
                   <div className="bg-navy rounded-2xl p-1 shadow-xl">
-                    <img src="user_uploads/logo.jpeg?v=3" alt="Logo JL" className="h-16 w-16 object-contain mix-blend-screen" />
+                    <img src="user_uploads/logo.jpeg?v=4" alt="Logo JL" className="h-16 w-16 object-contain mix-blend-screen" />
                   </div>
                   <div>
                     <div className="font-display font-medium text-2xl tracking-[0.1em] text-navy">
