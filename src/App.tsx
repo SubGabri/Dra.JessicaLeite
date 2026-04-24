@@ -7,17 +7,19 @@ const INSTAGRAM_LINK = "https://www.instagram.com/dra.jessicaleite?igsh=dmQzeWx0
 const LINKEDIN_LINK = "https://www.linkedin.com/in/jéssica-leite-a897771a1";
 
 // Helper to resolve asset paths correctly
+const ASSET_VERSION = "v19_final";
+
 const getAssetPath = (path: string) => {
-  // Always use absolute root since we are on drajessicaleite.com.br
-  const cleanPath = path.startsWith('/') ? path : `/${path}`;
-  // Remove existing query to avoid v=3&v=18
-  const pathWithoutQuery = cleanPath.split('?')[0];
-  // v=18 to force cache busting
-  return `${pathWithoutQuery}?v=18`;
+  // Use relative paths (without leading slash) for better compatibility with GH Pages custom domains
+  const pathWithoutQuery = path.split('?')[0];
+  const cleanPath = pathWithoutQuery.startsWith('/') ? pathWithoutQuery.slice(1) : pathWithoutQuery;
+  
+  // Force cache refresh
+  return `${cleanPath}?v=${ASSET_VERSION}`;
 };
 
 // Log version to help user verify the update
-console.log("Dra Jessica Leite Website - Build v18");
+console.log(`Dra Jessica Leite Website - Build ${ASSET_VERSION}`);
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -44,7 +46,7 @@ export default function App() {
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         {/* Watermark Logo */}
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.03]">
-          <img src={getAssetPath("user_uploads/logo.jpeg?v=3")} alt="" className="w-[80%] max-w-2xl object-contain mix-blend-multiply" />
+          <img src={getAssetPath("user_uploads/logo.jpeg")} alt="" className="w-[80%] max-w-2xl object-contain mix-blend-multiply" />
         </div>
       </div>
 
@@ -52,7 +54,7 @@ export default function App() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-md border-b border-navy/5">
         <div className="h-1.5 bg-navy w-full"></div>
         <div className="max-w-7xl mx-auto py-4 px-6 flex flex-col items-center justify-center text-center">
-          <img src={getAssetPath("user_uploads/logo.jpeg?v=3")} alt="Logo JL" className="h-12 w-12 md:h-14 md:w-14 object-contain mix-blend-multiply mb-1" />
+          <img src={getAssetPath("user_uploads/logo.jpeg")} alt="Logo JL" className="h-12 w-12 md:h-14 md:w-14 object-contain mix-blend-multiply mb-1" />
           <h1 className="font-display text-2xl md:text-3xl tracking-[0.2em] text-navy font-medium">DRA. JÉSSICA LEITE</h1>
           <p className="text-[9px] md:text-[10px] tracking-[0.4em] text-navy/60 uppercase font-medium mt-0.5">CIRURGIÃ-DENTISTA</p>
         </div>
@@ -288,13 +290,13 @@ export default function App() {
               className="inline-block px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold font-medium mb-6 text-sm tracking-wide notranslate" 
               translate="no"
               style={{ unicodeBidi: 'isolate', fontVariantNumeric: 'tabular-nums' }}
-              aria-label="CROSP 171.286"
+              aria-label="C R O S P 171.286"
             >
-              <span className="notranslate">C</span>
-              <span className="notranslate">R</span>
-              <span className="notranslate">O</span>
-              <span className="notranslate">S</span>
-              <span className="notranslate">P</span> 171.286
+              <span className="notranslate" translate="no">C</span>
+              <span className="notranslate" translate="no">R</span>
+              <span className="notranslate" translate="no">O</span>
+              <span className="notranslate" translate="no">S</span>
+              <span className="notranslate" translate="no">P</span> 171.286
             </div>
             <p className="text-lg text-navy/60 mb-6 leading-relaxed font-light">
               A Clínica Odontológica Jéssica Leite, localizada no coração do Jardim em Santo André, é especializada em oferecer tratamentos odontológicos completos com foco absoluto em saúde, estética e bem-estar.
@@ -410,7 +412,7 @@ export default function App() {
               <div className="lg:col-span-5">
                 <div className="flex items-center gap-4 mb-8">
                   <div className="bg-navy rounded-2xl p-1 shadow-xl">
-                    <img src={getAssetPath("user_uploads/logo.jpeg?v=4")} alt="Logo JL" className="h-16 w-16 object-contain mix-blend-screen" />
+                    <img src={getAssetPath("user_uploads/logo.jpeg")} alt="Logo JL" className="h-16 w-16 object-contain mix-blend-screen" />
                   </div>
                   <div>
                     <div className="font-display font-medium text-2xl tracking-[0.1em] text-navy">
