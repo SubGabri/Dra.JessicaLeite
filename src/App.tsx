@@ -6,12 +6,14 @@ const WHATSAPP_LINK = "https://wa.me/5511954582945?text=Olá%20Dra.%20Jéssica%2
 const INSTAGRAM_LINK = "https://www.instagram.com/dra.jessicaleite?igsh=dmQzeWx0aDc3eGN5";
 const LINKEDIN_LINK = "https://www.linkedin.com/in/jéssica-leite-a897771a1";
 
-// Helper to resolve asset paths correctly with Vite's base URL
+// Helper to resolve asset paths correctly with Vite's base URL and force refresh
 const getAssetPath = (path: string) => {
   const base = import.meta.env.BASE_URL;
   const cleanBase = base.endsWith('/') ? base : `${base}/`;
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  return `${cleanBase}${cleanPath}`;
+  // Adding ?v=2 to all assets to force browsers to reload missing images
+  const separator = cleanPath.includes('?') ? '&' : '?';
+  return `${cleanBase}${cleanPath}${separator}v=senior_prod_final`;
 };
 
 const fadeInUp = {
