@@ -7,19 +7,18 @@ const INSTAGRAM_LINK = "https://www.instagram.com/dra.jessicaleite?igsh=dmQzeWx0
 const LINKEDIN_LINK = "https://www.linkedin.com/in/jéssica-leite-a897771a1";
 
 // Helper to resolve asset paths correctly
-const ASSET_VERSION = "v19_final";
+const ASSET_VERSION = "v20_final";
 
 const getAssetPath = (path: string) => {
-  // Use relative paths (without leading slash) for better compatibility with GH Pages custom domains
+  // Use absolute paths from root for custom domain reliability
   const pathWithoutQuery = path.split('?')[0];
-  const cleanPath = pathWithoutQuery.startsWith('/') ? pathWithoutQuery.slice(1) : pathWithoutQuery;
+  const cleanPath = pathWithoutQuery.startsWith('/') ? pathWithoutQuery : `/${pathWithoutQuery}`;
   
-  // Force cache refresh
   return `${cleanPath}?v=${ASSET_VERSION}`;
 };
 
-// Log version to help user verify the update
-console.log(`Dra Jessica Leite Website - Build ${ASSET_VERSION}`);
+// Log for device verification
+console.log(`Dra Jessica Leite Website - Build ${ASSET_VERSION} (Absolute Paths)`);
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -290,13 +289,9 @@ export default function App() {
               className="inline-block px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold font-medium mb-6 text-sm tracking-wide notranslate" 
               translate="no"
               style={{ unicodeBidi: 'isolate', fontVariantNumeric: 'tabular-nums' }}
-              aria-label="C R O S P 171.286"
+              aria-label="CROSP 171.286"
             >
-              <span className="notranslate" translate="no">C</span>
-              <span className="notranslate" translate="no">R</span>
-              <span className="notranslate" translate="no">O</span>
-              <span className="notranslate" translate="no">S</span>
-              <span className="notranslate" translate="no">P</span> 171.286
+              C&#8203;R&#8203;O&#8203;S&#8203;P 171.286
             </div>
             <p className="text-lg text-navy/60 mb-6 leading-relaxed font-light">
               A Clínica Odontológica Jéssica Leite, localizada no coração do Jardim em Santo André, é especializada em oferecer tratamentos odontológicos completos com foco absoluto em saúde, estética e bem-estar.
