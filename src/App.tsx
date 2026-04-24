@@ -9,8 +9,9 @@ const LINKEDIN_LINK = "https://www.linkedin.com/in/jéssica-leite-a897771a1";
 // Helper to resolve asset paths correctly with Vite's base URL
 const getAssetPath = (path: string) => {
   const base = import.meta.env.BASE_URL;
+  const cleanBase = base.endsWith('/') ? base : `${base}/`;
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  return `${base}${cleanPath}`;
+  return `${cleanBase}${cleanPath}`;
 };
 
 const fadeInUp = {
@@ -65,15 +66,15 @@ export default function App() {
         </div>
 
         <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="relative z-10 max-w-5xl mx-auto text-center"
-        >
-          <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-navy/15 backdrop-blur-xl border border-navy/20 mb-8 shadow-md">
-            <Sparkles className="w-4 h-4 text-gold" />
-            <span className="text-xs font-bold tracking-[0.15em] uppercase text-navy">Odontologia de Excelência em Santo André</span>
-          </motion.div>
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="relative z-10 max-w-5xl mx-auto text-center"
+          >
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-navy/15 backdrop-blur-xl border border-navy/20 mb-8 shadow-md">
+              <Sparkles className="w-4 h-4 text-gold" aria-hidden="true" />
+              <span className="text-xs font-bold tracking-[0.15em] uppercase text-navy">Odontologia de Excelência em Santo André</span>
+            </motion.div>
 
           <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl lg:text-8xl font-display font-medium text-navy leading-[1.1] tracking-tight mb-8">
             A Arte de Sorrir com <span className="italic text-gold">Confiança.</span>
@@ -144,10 +145,10 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col h-[520px]"
+            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col min-h-[520px]"
           >
-            <div className="relative flex-1 bg-white/30 overflow-hidden">
-              <img src={getAssetPath("user_uploads/17.jpeg")} alt="Implantes" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" title="Implantes Dentários" />
+            <div className="relative h-[280px] bg-white/30 overflow-hidden">
+              <img src={getAssetPath("user_uploads/17.jpeg")} alt="Implantes Dentários e Protocolo" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="p-10 bg-cream/80 backdrop-blur-sm border-t border-navy/5">
               <h3 className="text-3xl font-display font-medium text-navy mb-3">Implantes & Protocolo</h3>
@@ -161,10 +162,10 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col h-[520px]"
+            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col min-h-[520px]"
           >
-            <div className="relative flex-1 bg-white/30 overflow-hidden">
-              <img src={getAssetPath("user_uploads/facetas.jpeg")} alt="Facetas em Resina" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" title="Facetas em Resina" />
+            <div className="relative h-[280px] bg-white/30 overflow-hidden">
+              <img src={getAssetPath("user_uploads/facetas.jpeg")} alt="Facetas em Resina" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="p-10 bg-cream/80 backdrop-blur-sm border-t border-navy/5">
               <h3 className="text-3xl font-display font-medium text-navy mb-3">Facetas em Resina</h3>
@@ -178,10 +179,10 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col h-[520px]"
+            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col min-h-[520px]"
           >
-            <div className="relative flex-1 bg-white/30 overflow-hidden">
-              <img src={getAssetPath("user_uploads/clareamento.jpeg")} alt="Clareamento" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" title="Clareamento Dental" />
+            <div className="relative h-[280px] bg-white/30 overflow-hidden">
+              <img src={getAssetPath("user_uploads/clareamento.jpeg")} alt="Clareamento Dental Profissional" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="p-10 bg-cream/80 backdrop-blur-sm border-t border-navy/5">
               <h3 className="text-3xl font-display font-medium text-navy mb-3">Clareamento</h3>
@@ -195,14 +196,14 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="glass rounded-[2.5rem] relative overflow-hidden cursor-pointer flex flex-col h-[520px] group"
+            className="glass rounded-[2.5rem] relative overflow-hidden cursor-pointer flex flex-col min-h-[520px] group"
             onClick={() => setShowOrtodontiaAfter(!showOrtodontiaAfter)}
             onMouseEnter={() => setShowOrtodontiaAfter(true)}
             onMouseLeave={() => setShowOrtodontiaAfter(false)}
           >
-            <div className="relative flex-1 bg-white/30 overflow-hidden">
-              <img src={getAssetPath("user_uploads/ortodontia-antes.jpeg")} alt="Aparelhos Ortodônticos Antes" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showOrtodontiaAfter ? 'opacity-0 scale-105' : 'opacity-100 scale-100'}`} />
-              <img src={getAssetPath("user_uploads/ortodontia-depois.jpeg")} alt="Aparelhos Ortodônticos Depois" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showOrtodontiaAfter ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`} />
+            <div className="relative h-[280px] bg-white/30 overflow-hidden">
+              <img src={getAssetPath("user_uploads/ortodontia-antes.jpeg")} alt="Resultado Ortodontia - Antes" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showOrtodontiaAfter ? 'opacity-0 scale-105' : 'opacity-100 scale-100'}`} />
+              <img src={getAssetPath("user_uploads/ortodontia-depois.jpeg")} alt="Resultado Ortodontia - Depois" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showOrtodontiaAfter ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`} />
               <div className={`absolute top-6 right-6 z-20 bg-navy/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-navy/10 text-xs font-medium text-navy/80 transition-opacity duration-500 ${showOrtodontiaAfter ? 'opacity-0' : 'opacity-100'}`}>Antes</div>
               <div className={`absolute top-6 right-6 z-20 bg-gold backdrop-blur-md px-4 py-1.5 rounded-full border border-gold/20 text-xs font-bold text-navy transition-opacity duration-500 shadow-lg ${showOrtodontiaAfter ? 'opacity-100' : 'opacity-0'}`}>Depois ✨</div>
             </div>
@@ -218,10 +219,10 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
-            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col h-[520px]"
+            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col min-h-[520px]"
           >
-            <div className="relative flex-1 bg-white/30 overflow-hidden">
-              <img src={getAssetPath("user_uploads/profilaxia.jpeg")} alt="Profilaxia" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" title="Profilaxia Dental" />
+            <div className="relative h-[280px] bg-white/30 overflow-hidden">
+              <img src={getAssetPath("user_uploads/profilaxia.jpeg")} alt="Profilaxia e Limpeza Dental" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="p-10 bg-cream/80 backdrop-blur-sm border-t border-navy/5">
               <h3 className="text-3xl font-display font-medium text-navy mb-3">Profilaxia</h3>
@@ -235,14 +236,14 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
-            className="glass rounded-[2.5rem] relative overflow-hidden cursor-pointer flex flex-col h-[520px] group"
+            className="glass rounded-[2.5rem] relative overflow-hidden cursor-pointer flex flex-col min-h-[520px] group"
             onClick={() => setShowRestauracaoAfter(!showRestauracaoAfter)}
             onMouseEnter={() => setShowRestauracaoAfter(true)}
             onMouseLeave={() => setShowRestauracaoAfter(false)}
           >
-            <div className="relative flex-1 bg-white/30 overflow-hidden">
-              <img src={getAssetPath("user_uploads/restauracao-antes.jpeg")} alt="Restauração Antes" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showRestauracaoAfter ? 'opacity-0 scale-105' : 'opacity-100 scale-100'}`} />
-              <img src={getAssetPath("user_uploads/restauracao-depois.jpeg")} alt="Restauração Depois" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showRestauracaoAfter ? 'opacity-80 scale-100' : 'opacity-0 scale-110'}`} />
+            <div className="relative h-[280px] bg-white/30 overflow-hidden">
+              <img src={getAssetPath("user_uploads/restauracao-antes.jpeg")} alt="Restauração Dental - Antes" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showRestauracaoAfter ? 'opacity-0 scale-105' : 'opacity-100 scale-100'}`} />
+              <img src={getAssetPath("user_uploads/restauracao-depois.jpeg")} alt="Restauração Dental - Depois" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showRestauracaoAfter ? 'opacity-80 scale-100' : 'opacity-0 scale-110'}`} />
               <div className={`absolute top-6 right-6 z-20 bg-navy/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-navy/10 text-xs font-medium text-navy/80 transition-opacity duration-500 ${showRestauracaoAfter ? 'opacity-0' : 'opacity-100'}`}>Antes</div>
               <div className={`absolute top-6 right-6 z-20 bg-gold backdrop-blur-md px-4 py-1.5 rounded-full border border-gold/20 text-xs font-bold text-navy transition-opacity duration-500 shadow-lg ${showRestauracaoAfter ? 'opacity-100' : 'opacity-0'}`}>Depois ✨</div>
             </div>
