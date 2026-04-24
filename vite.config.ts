@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
-    // Base path for custom domain (root)
+    // Base path for custom domain or root URL
     base: '/',
     plugins: [react(), tailwindcss()],
     define: {
