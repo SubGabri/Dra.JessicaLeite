@@ -6,18 +6,18 @@ const WHATSAPP_LINK = "https://wa.me/5511954582945?text=Olá%20Dra.%20Jéssica%2
 const INSTAGRAM_LINK = "https://www.instagram.com/dra.jessicaleite?igsh=dmQzeWx0aDc3eGN5";
 const LINKEDIN_LINK = "https://www.linkedin.com/in/jéssica-leite-a897771a1";
 
-// Helper to resolve asset paths correctly with Vite's base URL and force refresh
+// Helper to resolve asset paths correctly
 const getAssetPath = (path: string) => {
-  // Use absolute paths for the custom domain drajessicaleite.com.br
+  // Always use absolute root since we are on drajessicaleite.com.br
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
-  const separator = cleanPath.includes('?') ? '&' : '?';
-  // Force a fresh version to bypass potential stale caches
-  return `${cleanPath}${separator}v=v15_final_prod`;
+  // Remove existing query to avoid v=3&v=18
+  const pathWithoutQuery = cleanPath.split('?')[0];
+  // v=18 to force cache busting
+  return `${pathWithoutQuery}?v=18`;
 };
 
-// Debug info for the environment
-console.log("App Version: v15_final_prod");
-console.log("Base URL:", import.meta.env.BASE_URL);
+// Log version to help user verify the update
+console.log("Dra Jessica Leite Website - Build v18");
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -285,11 +285,16 @@ export default function App() {
           >
             <h2 className="text-4xl md:text-5xl font-display font-medium text-navy mb-2">Dra. Jéssica Leite</h2>
             <div 
-              className="inline-block px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold font-medium mb-6 text-sm tracking-wide" 
+              className="inline-block px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold font-medium mb-6 text-sm tracking-wide notranslate" 
               translate="no"
-              style={{ unicodeBidi: 'isolate' }}
+              style={{ unicodeBidi: 'isolate', fontVariantNumeric: 'tabular-nums' }}
+              aria-label="CROSP 171.286"
             >
-              CROSP 171.286
+              <span className="notranslate">C</span>
+              <span className="notranslate">R</span>
+              <span className="notranslate">O</span>
+              <span className="notranslate">S</span>
+              <span className="notranslate">P</span> 171.286
             </div>
             <p className="text-lg text-navy/60 mb-6 leading-relaxed font-light">
               A Clínica Odontológica Jéssica Leite, localizada no coração do Jardim em Santo André, é especializada em oferecer tratamentos odontológicos completos com foco absoluto em saúde, estética e bem-estar.
