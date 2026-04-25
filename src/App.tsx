@@ -6,21 +6,20 @@ const WHATSAPP_LINK = "https://wa.me/5511954582945?text=Olá%20Dra.%20Jéssica%2
 const INSTAGRAM_LINK = "https://www.instagram.com/dra.jessicaleite?igsh=dmQzeWx0aDc3eGN5";
 const LINKEDIN_LINK = "https://www.linkedin.com/in/jéssica-leite-a897771a1";
 
-// Versão do cache para forçar atualização total
-const ASSET_VERSION = "v26_final_prod";
+// Versão final para GitHub Pages + Domínio Customizado
+const ASSET_VERSION = "v27_final_fix";
 
 const getAssetPath = (path: string) => {
-  // Pega apenas o nome do arquivo (ex: logo.jpeg)
+  // Pega o nome do arquivo indepedente de como venha (ex: logo.jpeg)
   const fileName = path.split('/').pop()?.split('?')[0];
   if (!fileName) return path;
   
-  // Caminho absoluto forçado para a nova pasta /assets/
-  return `/assets/${fileName}?v=${ASSET_VERSION}`;
+  // No GitHub Pages com domínio próprio, o caminho relativo ./img/ ou absoluto /img/ deve funcionar
+  return `/img/${fileName}?v=${ASSET_VERSION}`;
 };
 
-// Log de diagnóstico para o cliente
 console.log(`%c Dra Jessica Leite Website - Build ${ASSET_VERSION} `, 'background: #001F3F; color: #D4AF37; font-size: 14px; font-weight: bold;');
-console.log("Caminho atual das imagens: /assets/");
+console.log("Pasta de imagens oficial: /img/");
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
