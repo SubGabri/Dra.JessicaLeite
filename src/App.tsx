@@ -6,19 +6,19 @@ const WHATSAPP_LINK = "https://wa.me/5511954582945?text=Olá%20Dra.%20Jéssica%2
 const INSTAGRAM_LINK = "https://www.instagram.com/dra.jessicaleite?igsh=dmQzeWx0aDc3eGN5";
 const LINKEDIN_LINK = "https://www.linkedin.com/in/jéssica-leite-a897771a1";
 
-// Versão final para cache e deploy
-const ASSET_VERSION = "v32_build";
+// Versão sincronizada com o nome correto da pasta
+const ASSET_VERSION = "v35_user_upload";
 
 const getAssetPath = (path: string) => {
   const fileName = path.split('/').pop()?.split('?')[0];
   if (!fileName) return path;
   
-  // No GitHub Pages com domínio customizado, caminhos relativos ao root (/) costumam ser os mais estáveis
-  return `/images/${fileName}?v=${ASSET_VERSION}`;
+  // Alterado para user_upload conforme solicitado
+  return `/user_upload/${fileName}?v=${ASSET_VERSION}`;
 };
 
 console.log(`%c Dra Jessica Leite - Prod ${ASSET_VERSION} `, 'background: #001F3F; color: #D4AF37; font-size: 14px; font-weight: bold;');
-console.log("Assets: /images/");
+console.log("Assets: /user_upload/");
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
