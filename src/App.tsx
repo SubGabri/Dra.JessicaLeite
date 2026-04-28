@@ -6,6 +6,19 @@ const WHATSAPP_LINK = "https://wa.me/5511954582945?text=Olá%20Dra.%20Jéssica%2
 const INSTAGRAM_LINK = "https://www.instagram.com/dra.jessicaleite?igsh=dmQzeWx0aDc3eGN5";
 const LINKEDIN_LINK = "https://www.linkedin.com/in/jéssica-leite-a897771a1";
 
+// Helper to resolve asset paths correctly with Vite's base URL and force refresh
+const getAssetPath = (path: string) => {
+  // Use absolute paths for the custom domain drajessicaleite.com.br
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  const separator = cleanPath.includes('?') ? '&' : '?';
+  // Force a fresh version to bypass potential stale caches
+  return `${cleanPath}${separator}v=v15_final_prod`;
+};
+
+// Debug info for the environment
+console.log("App Version: v15_final_prod");
+console.log("Base URL:", import.meta.env.BASE_URL);
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
@@ -31,7 +44,7 @@ export default function App() {
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         {/* Watermark Logo */}
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.03]">
-          <img src="user_uploads/logo.jpeg?v=3" alt="" className="w-[80%] max-w-2xl object-contain mix-blend-multiply" />
+          <img src={getAssetPath("user_uploads/logo.jpeg?v=3")} alt="" className="w-[80%] max-w-2xl object-contain mix-blend-multiply" />
         </div>
       </div>
 
@@ -39,7 +52,7 @@ export default function App() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-md border-b border-navy/5">
         <div className="h-1.5 bg-navy w-full"></div>
         <div className="max-w-7xl mx-auto py-4 px-6 flex flex-col items-center justify-center text-center">
-          <img src="user_uploads/logo.jpeg?v=3" alt="Logo JL" className="h-12 w-12 md:h-14 md:w-14 object-contain mix-blend-multiply mb-1" />
+          <img src={getAssetPath("user_uploads/logo.jpeg?v=3")} alt="Logo JL" className="h-12 w-12 md:h-14 md:w-14 object-contain mix-blend-multiply mb-1" />
           <h1 className="font-display text-2xl md:text-3xl tracking-[0.2em] text-navy font-medium">DRA. JÉSSICA LEITE</h1>
           <p className="text-[9px] md:text-[10px] tracking-[0.4em] text-navy/60 uppercase font-medium mt-0.5">CIRURGIÃ-DENTISTA</p>
         </div>
@@ -52,21 +65,21 @@ export default function App() {
         <div className="absolute inset-0 z-0 bg-cream">
           <div 
             className="absolute inset-0 bg-cover bg-center opacity-40"
-            style={{ backgroundImage: "url('user_uploads/8.jpeg')" }}
+            style={{ backgroundImage: `url('${getAssetPath("user_uploads/8.jpeg")}')` }}
           ></div>
           <div className="absolute inset-0 bg-gradient-to-b from-cream/20 via-cream/40 to-cream"></div>
         </div>
 
         <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="relative z-10 max-w-5xl mx-auto text-center"
-        >
-          <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-navy/15 backdrop-blur-xl border border-navy/20 mb-8 shadow-md">
-            <Sparkles className="w-4 h-4 text-gold" />
-            <span className="text-xs font-bold tracking-[0.15em] uppercase text-navy">Odontologia de Excelência em Santo André</span>
-          </motion.div>
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="relative z-10 max-w-5xl mx-auto text-center"
+          >
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-navy/15 backdrop-blur-xl border border-navy/20 mb-8 shadow-md">
+              <Sparkles className="w-4 h-4 text-gold" aria-hidden="true" />
+              <span className="text-xs font-bold tracking-[0.15em] uppercase text-navy">Odontologia de Excelência em Santo André</span>
+            </motion.div>
 
           <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl lg:text-8xl font-display font-medium text-navy leading-[1.1] tracking-tight mb-8">
             A Arte de Sorrir com <span className="italic text-gold">Confiança.</span>
@@ -137,10 +150,10 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col h-[520px]"
+            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col min-h-[520px]"
           >
-            <div className="relative flex-1 bg-white/30 overflow-hidden">
-              <img src="user_uploads/17.jpeg" alt="Implantes" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" title="Implantes Dentários" />
+            <div className="relative h-[280px] bg-white/30 overflow-hidden">
+              <img src={getAssetPath("user_uploads/17.jpeg")} alt="Implantes Dentários e Protocolo" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="p-10 bg-cream/80 backdrop-blur-sm border-t border-navy/5">
               <h3 className="text-3xl font-display font-medium text-navy mb-3">Implantes & Protocolo</h3>
@@ -154,10 +167,10 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col h-[520px]"
+            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col min-h-[520px]"
           >
-            <div className="relative flex-1 bg-white/30 overflow-hidden">
-              <img src="user_uploads/facetas.jpeg" alt="Facetas em Resina" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" title="Facetas em Resina" />
+            <div className="relative h-[280px] bg-white/30 overflow-hidden">
+              <img src={getAssetPath("user_uploads/facetas.jpeg")} alt="Facetas em Resina" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="p-10 bg-cream/80 backdrop-blur-sm border-t border-navy/5">
               <h3 className="text-3xl font-display font-medium text-navy mb-3">Facetas em Resina</h3>
@@ -171,10 +184,10 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col h-[520px]"
+            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col min-h-[520px]"
           >
-            <div className="relative flex-1 bg-white/30 overflow-hidden">
-              <img src="user_uploads/clareamento.jpeg" alt="Clareamento" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" title="Clareamento Dental" />
+            <div className="relative h-[280px] bg-white/30 overflow-hidden">
+              <img src={getAssetPath("user_uploads/clareamento.jpeg")} alt="Clareamento Dental Profissional" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="p-10 bg-cream/80 backdrop-blur-sm border-t border-navy/5">
               <h3 className="text-3xl font-display font-medium text-navy mb-3">Clareamento</h3>
@@ -188,14 +201,14 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="glass rounded-[2.5rem] relative overflow-hidden cursor-pointer flex flex-col h-[520px] group"
+            className="glass rounded-[2.5rem] relative overflow-hidden cursor-pointer flex flex-col min-h-[520px] group"
             onClick={() => setShowOrtodontiaAfter(!showOrtodontiaAfter)}
             onMouseEnter={() => setShowOrtodontiaAfter(true)}
             onMouseLeave={() => setShowOrtodontiaAfter(false)}
           >
-            <div className="relative flex-1 bg-white/30 overflow-hidden">
-              <img src="user_uploads/ortodontia-antes.jpeg" alt="Aparelhos Ortodônticos Antes" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showOrtodontiaAfter ? 'opacity-0 scale-105' : 'opacity-100 scale-100'}`} />
-              <img src="user_uploads/ortodontia-depois.jpeg" alt="Aparelhos Ortodônticos Depois" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showOrtodontiaAfter ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`} />
+            <div className="relative h-[280px] bg-white/30 overflow-hidden">
+              <img src={getAssetPath("user_uploads/ortodontia-antes.jpeg")} alt="Resultado Ortodontia - Antes" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showOrtodontiaAfter ? 'opacity-0 scale-105' : 'opacity-100 scale-100'}`} />
+              <img src={getAssetPath("user_uploads/ortodontia-depois.jpeg")} alt="Resultado Ortodontia - Depois" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showOrtodontiaAfter ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`} />
               <div className={`absolute top-6 right-6 z-20 bg-navy/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-navy/10 text-xs font-medium text-navy/80 transition-opacity duration-500 ${showOrtodontiaAfter ? 'opacity-0' : 'opacity-100'}`}>Antes</div>
               <div className={`absolute top-6 right-6 z-20 bg-gold backdrop-blur-md px-4 py-1.5 rounded-full border border-gold/20 text-xs font-bold text-navy transition-opacity duration-500 shadow-lg ${showOrtodontiaAfter ? 'opacity-100' : 'opacity-0'}`}>Depois ✨</div>
             </div>
@@ -211,10 +224,10 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
-            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col h-[520px]"
+            className="glass rounded-[2.5rem] relative overflow-hidden group flex flex-col min-h-[520px]"
           >
-            <div className="relative flex-1 bg-white/30 overflow-hidden">
-              <img src="user_uploads/profilaxia.jpeg" alt="Profilaxia" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" title="Profilaxia Dental" />
+            <div className="relative h-[280px] bg-white/30 overflow-hidden">
+              <img src={getAssetPath("user_uploads/profilaxia.jpeg")} alt="Profilaxia e Limpeza Dental" loading="lazy" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="p-10 bg-cream/80 backdrop-blur-sm border-t border-navy/5">
               <h3 className="text-3xl font-display font-medium text-navy mb-3">Profilaxia</h3>
@@ -228,14 +241,14 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
-            className="glass rounded-[2.5rem] relative overflow-hidden cursor-pointer flex flex-col h-[520px] group"
+            className="glass rounded-[2.5rem] relative overflow-hidden cursor-pointer flex flex-col min-h-[520px] group"
             onClick={() => setShowRestauracaoAfter(!showRestauracaoAfter)}
             onMouseEnter={() => setShowRestauracaoAfter(true)}
             onMouseLeave={() => setShowRestauracaoAfter(false)}
           >
-            <div className="relative flex-1 bg-white/30 overflow-hidden">
-              <img src="user_uploads/restauracao-antes.jpeg" alt="Restauração Antes" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showRestauracaoAfter ? 'opacity-0 scale-105' : 'opacity-100 scale-100'}`} />
-              <img src="user_uploads/restauracao-depois.jpeg" alt="Restauração Depois" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showRestauracaoAfter ? 'opacity-80 scale-100' : 'opacity-0 scale-110'}`} />
+            <div className="relative h-[280px] bg-white/30 overflow-hidden">
+              <img src={getAssetPath("user_uploads/restauracao-antes.jpeg")} alt="Restauração Dental - Antes" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showRestauracaoAfter ? 'opacity-0 scale-105' : 'opacity-100 scale-100'}`} />
+              <img src={getAssetPath("user_uploads/restauracao-depois.jpeg")} alt="Restauração Dental - Depois" loading="lazy" className={`absolute inset-0 w-full h-full object-contain transition-all duration-700 ${showRestauracaoAfter ? 'opacity-80 scale-100' : 'opacity-0 scale-110'}`} />
               <div className={`absolute top-6 right-6 z-20 bg-navy/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-navy/10 text-xs font-medium text-navy/80 transition-opacity duration-500 ${showRestauracaoAfter ? 'opacity-0' : 'opacity-100'}`}>Antes</div>
               <div className={`absolute top-6 right-6 z-20 bg-gold backdrop-blur-md px-4 py-1.5 rounded-full border border-gold/20 text-xs font-bold text-navy transition-opacity duration-500 shadow-lg ${showRestauracaoAfter ? 'opacity-100' : 'opacity-0'}`}>Depois ✨</div>
             </div>
@@ -257,7 +270,7 @@ export default function App() {
             className="relative"
           >
             <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-navy/10">
-              <img src="user_uploads/8.jpeg" alt="Dra. Jéssica Leite" loading="lazy" className="w-full h-full object-cover opacity-80 object-top" title="Dra. Jéssica Leite" />
+              <img src={getAssetPath("user_uploads/8.jpeg")} alt="Dra. Jéssica Leite" loading="lazy" className="w-full h-full object-cover opacity-80 object-top" title="Dra. Jéssica Leite" />
             </div>
             <div className="absolute -bottom-8 -right-8 glass p-6 rounded-2xl hidden md:block">
               <div className="text-4xl font-display font-medium text-gold mb-1">Saúde</div>
@@ -271,7 +284,11 @@ export default function App() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-display font-medium text-navy mb-2">Dra. Jéssica Leite</h2>
-            <div className="inline-block px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold font-medium mb-6 text-sm tracking-wide">
+            <div 
+              className="inline-block px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold font-medium mb-6 text-sm tracking-wide" 
+              translate="no"
+              style={{ unicodeBidi: 'isolate' }}
+            >
               CROSP 171.286
             </div>
             <p className="text-lg text-navy/60 mb-6 leading-relaxed font-light">
@@ -388,7 +405,7 @@ export default function App() {
               <div className="lg:col-span-5">
                 <div className="flex items-center gap-4 mb-8">
                   <div className="bg-navy rounded-2xl p-1 shadow-xl">
-                    <img src="user_uploads/logo.jpeg?v=3" alt="Logo JL" className="h-16 w-16 object-contain mix-blend-screen" />
+                    <img src={getAssetPath("user_uploads/logo.jpeg?v=4")} alt="Logo JL" className="h-16 w-16 object-contain mix-blend-screen" />
                   </div>
                   <div>
                     <div className="font-display font-medium text-2xl tracking-[0.1em] text-navy">
