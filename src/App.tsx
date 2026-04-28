@@ -8,16 +8,13 @@ const LINKEDIN_LINK = "https://www.linkedin.com/in/jéssica-leite-a897771a1";
 
 // Helper to resolve asset paths correctly with Vite's base URL and force refresh
 const getAssetPath = (path: string) => {
-  // Use absolute paths for the custom domain drajessicaleite.com.br
-  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  const base = import.meta.env.BASE_URL;
+  const cleanBase = base.endsWith('/') ? base : `${base}/`;
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  // Adding ?v=2 to all assets to force browsers to reload missing images
   const separator = cleanPath.includes('?') ? '&' : '?';
-  // Force a fresh version to bypass potential stale caches
-  return `${cleanPath}${separator}v=v15_final_prod`;
+  return `${cleanBase}${cleanPath}${separator}v=senior_prod_final`;
 };
-
-// Debug info for the environment
-console.log("App Version: v15_final_prod");
-console.log("Base URL:", import.meta.env.BASE_URL);
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -284,11 +281,7 @@ export default function App() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-display font-medium text-navy mb-2">Dra. Jéssica Leite</h2>
-            <div 
-              className="inline-block px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold font-medium mb-6 text-sm tracking-wide" 
-              translate="no"
-              style={{ unicodeBidi: 'isolate' }}
-            >
+            <div className="inline-block px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold font-medium mb-6 text-sm tracking-wide">
               CROSP 171.286
             </div>
             <p className="text-lg text-navy/60 mb-6 leading-relaxed font-light">
