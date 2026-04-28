@@ -7,18 +7,23 @@ const INSTAGRAM_LINK = "https://www.instagram.com/dra.jessicaleite?igsh=dmQzeWx0
 const LINKEDIN_LINK = "https://www.linkedin.com/in/jéssica-leite-a897771a1";
 
 // Versão sincronizada com o nome correto da pasta
-const ASSET_VERSION = "v40";
+const ASSET_VERSION = "v41";
 
 const getAssetPath = (path: string) => {
   const fileName = path.split('/').pop()?.split('?')[0];
   if (!fileName) return path;
+  
+  // Se for o logo, priorizamos .png
+  if (fileName.includes("logo")) {
+    return `/images/logo.png?v=${ASSET_VERSION}`;
+  }
   
   // Caminho absoluto direto para evitar problemas de roteamento
   return `/images/${fileName}?v=${ASSET_VERSION}`;
 };
 
 console.log(`%c Dra Jessica Leite - Prod ${ASSET_VERSION} `, 'background: #001F3F; color: #D4AF37; font-size: 14px; font-weight: bold;');
-console.log("Assets Path: /images/");
+console.log("Assets Path: /images/ logo: png");
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
