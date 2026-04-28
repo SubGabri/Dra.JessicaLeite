@@ -7,7 +7,7 @@ const INSTAGRAM_LINK = "https://www.instagram.com/dra.jessicaleite?igsh=dmQzeWx0
 const LINKEDIN_LINK = "https://www.linkedin.com/in/jéssica-leite-a897771a1";
 
 // Versão sincronizada com o nome correto da pasta
-const ASSET_VERSION = "v42_new_logo";
+const ASSET_VERSION = "v43_dra_photo";
 
 const getAssetPath = (path: string) => {
   const fileName = path.split('/').pop()?.split('?')[0];
@@ -63,6 +63,10 @@ export default function App() {
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center pt-56 pb-20 px-6 overflow-hidden">
         <div className="absolute inset-0 z-0 bg-cream">
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-30"
+            style={{ backgroundImage: `url('${getAssetPath("dra_jessica.jpg")}')` }}
+          ></div>
           <div className="absolute inset-0 bg-gradient-to-b from-cream/20 via-cream/40 to-cream"></div>
         </div>
 
@@ -235,9 +239,8 @@ export default function App() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-navy/10 bg-navy/5 flex items-center justify-center text-navy/20">
-              {/* Foto da Dra. removida */}
-              <span className="font-display text-lg uppercase tracking-widest">Dra. Jéssica Leite</span>
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-navy/10 shadow-2xl">
+              <img src={getAssetPath("dra_jessica.jpg")} alt="Dra. Jéssica Leite" loading="lazy" className="w-full h-full object-cover object-center" />
             </div>
             <div className="absolute -bottom-8 -right-8 glass p-6 rounded-2xl hidden md:block">
               <div className="text-4xl font-display font-medium text-gold mb-1">Saúde</div>
