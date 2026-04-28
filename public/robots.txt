@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://drajessicaleite.com.br/sitemap.xml
