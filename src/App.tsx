@@ -7,14 +7,17 @@ const INSTAGRAM_LINK = "https://www.instagram.com/dra.jessicaleite?igsh=dmQzeWx0
 const LINKEDIN_LINK = "https://www.linkedin.com/in/jéssica-leite-a897771a1";
 
 // Versão sincronizada com o nome correto da pasta
-const ASSET_VERSION = "v41";
+const ASSET_VERSION = "v42_new_logo";
 
 const getAssetPath = (path: string) => {
-  return ""; // Removido temporariamente até novas imagens serem enviadas
+  const fileName = path.split('/').pop()?.split('?')[0];
+  if (!fileName) return "";
+  
+  return `/images/${fileName}?v=${ASSET_VERSION}`;
 };
 
 console.log(`%c Dra Jessica Leite - Prod ${ASSET_VERSION} `, 'background: #001F3F; color: #D4AF37; font-size: 14px; font-weight: bold;');
-console.log("Sistema pronto para novas imagens.");
+console.log("Assets Path: /images/");
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -39,13 +42,17 @@ export default function App() {
     <div className="min-h-screen bg-cream overflow-hidden selection:bg-gold selection:text-navy font-sans">
       {/* Fixed Background Elements (Letterhead Style) */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* Watermark Logo removido */}
+        {/* Watermark Logo */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-[0.03]">
+          <img src={getAssetPath("logo.png")} alt="" className="w-[80%] max-w-2xl object-contain mix-blend-multiply" />
+        </div>
       </div>
 
       {/* Header (Letterhead Style) */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-cream/90 backdrop-blur-md border-b border-navy/5">
         <div className="h-1.5 bg-navy w-full"></div>
         <div className="max-w-7xl mx-auto py-4 px-6 flex flex-col items-center justify-center text-center">
+          <img src={getAssetPath("logo.png")} alt="Logo JL" className="h-12 w-12 md:h-14 md:w-14 object-contain mix-blend-multiply mb-1" />
           <h1 className="font-display text-2xl md:text-3xl tracking-[0.2em] text-navy font-medium">DRA. JÉSSICA LEITE</h1>
           <p className="text-[9px] md:text-[10px] tracking-[0.4em] text-navy/60 uppercase font-medium mt-0.5">CIRURGIÃ-DENTISTA</p>
         </div>
@@ -365,6 +372,9 @@ export default function App() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
               <div className="lg:col-span-5">
                 <div className="flex items-center gap-4 mb-8">
+                  <div className="bg-navy rounded-2xl p-1 shadow-xl">
+                    <img src={getAssetPath("logo.png")} alt="Logo JL" className="h-16 w-16 object-contain mix-blend-screen" />
+                  </div>
                   <div>
                     <div className="font-display font-medium text-2xl tracking-[0.1em] text-navy">
                       DRA. JÉSSICA LEITE
